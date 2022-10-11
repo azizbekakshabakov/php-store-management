@@ -7,6 +7,21 @@
 </head>
 <body>
 
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <div></div>
+    <form class="d-flex">
+      @if(\Illuminate\Support\Facades\Auth::user())
+        <div class="m-2">{{\Illuminate\Support\Facades\Auth::user()->email}}</div>
+        <a class="btn btn-success" href="/auth/logout">Log out</a>
+      @else
+        <a class="btn btn-success me-2" href="/auth/register">Register</a>
+        <a class="btn btn-success" href="/auth/login">Authorize</a>
+      @endif
+    </form>
+  </div>
+</nav>
+
 <div class="border-end bg-white" id="sidebar-wrapper" style="position: fixed; bottom: 0; top: 0; width: 250px;">
 	<a href="/" class="text-decoration-none"><div class="text-dark p-3 fs-5">Supermarket</div></a>
 	<div class="list-group list-group-flush">
@@ -20,6 +35,13 @@
 </div>
 
 <div class="container">
+
+	@if(session('status'))
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			{{session('status')}}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	@endif
 
     <div class="d-flex align-items-center justify-content-center" style="height: 90vh;">
         <h1 class="text-center mt-5">Store management system</h1>

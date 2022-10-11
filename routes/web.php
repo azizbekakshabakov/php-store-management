@@ -8,6 +8,7 @@ use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,14 @@ use App\Http\Controllers\WarehouseController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['prefix' => 'auth'], function() {
+    Route::get('register', [AuthController::class, 'register']);
+    Route::get('login', [AuthController::class, 'auth']);
+    Route::post('user/create', [AuthController::class, 'create']);
+    Route::post('signin', [AuthController::class, 'login']);
+    Route::get('logout', [AuthController::class, 'logout']);
+});
 
 Route::get('/', [MainController::class, 'home']);
 
