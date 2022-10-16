@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('surname');
             $table->integer('salary');
             $table->integer('experience');
+            $table->string('image');
             $table->timestamps();
         });
     }

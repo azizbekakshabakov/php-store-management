@@ -13,7 +13,8 @@ class Employee extends Model
         'name',
         'surname',
         'salary',
-        'experience'
+        'experience',
+        'image'
     ];
 
     public function categories() {

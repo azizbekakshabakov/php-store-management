@@ -16,12 +16,14 @@ class EmployeesController extends Controller
     }
 
     public function addEmployee(Request $request) {
-        if ($request->has(['name', 'surname', 'salary', 'experience'])) {
+        if ($request->has(['name', 'surname', 'salary', 'experience']) && $request->hasFile('image')) {
             $employee = new Employee();
             $employee->name = $request->get('name');
             $employee->surname = $request->get('surname');
             $employee->salary = $request->get('salary');
             $employee->experience = $request->get('experience');
+            $url = $request->file('image')->store('images');
+            $employee->image = $url;
 
             $employee->save();
 

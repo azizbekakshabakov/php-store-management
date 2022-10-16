@@ -77,17 +77,19 @@
                         <th>Name</th>
                         <th>Salary</th>
                         <th>Experience</th>
+                        <th>Photo</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($employees as $employee)
                     <tr>
-                        <td>{{$employee->id}}</td>
-                        <td>{{$employee->name}} {{$employee->surname}}</td>
-                        <td>{{$employee->salary}} ₸</td>
-                        <td>{{$employee->experience}} years</td>
-                        <td>
+                        <td class="align-middle">{{$employee->id}}</td>
+                        <td class="align-middle">{{$employee->name}} {{$employee->surname}}</td>
+                        <td class="align-middle">{{$employee->salary}} ₸</td>
+                        <td class="align-middle">{{$employee->experience}} years</td>
+                        <td><img src="/storage/{{$employee->image}}" alt="image" style="height: 200px;"></td>
+                        <td class="align-middle">
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group me-1">
                                     <form action="/table/employees/edit/{{$employee->id}}" method="GET">
@@ -112,7 +114,7 @@
 </div>
 
 <!-- Modal for adding -->
-<form action="/table/employees/add" method="POST">
+<form action="/table/employees/add" method="POST" enctype="multipart/form-data">
     @csrf
 	<!-- <input type="hidden" name="table" value="employees"> -->
 	<div class="modal fade" id="addItemModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -138,15 +140,10 @@
                     <label>Experience : </label>
                     <input type="number" name="experience" class="form-control">
                 </div>
-                <!-- <div class="form-group modal-body mb-3">
-                    <label>Selection : </label>
-                    <select class="form-select" name="REDACT-SELECTION">
-                        <option hidden disabled selected value></option>
-                            <option value="OPTION123">
-                                Name of option
-                            </option>
-                    </select>
-                </div> -->
+                <div class="form-group modal-body">
+                    <label>Photo : </label>
+                    <input type="file" name="image" class="form-control" />
+                </div>
                 
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-success">Add</button>
