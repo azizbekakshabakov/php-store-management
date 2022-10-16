@@ -13,6 +13,13 @@
         <h1 class="text-center mt-5">Login form</h1>
     <!-- </div> -->
 
+	@if(session('status'))
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			{{session('status')}}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	@endif
+
 	<form action="/auth/signin" method="POST">
 		@csrf
 		<div class="form-group modal-body">

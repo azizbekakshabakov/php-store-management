@@ -26,7 +26,7 @@ class AuthController extends Controller
             return redirect('/')->with('status', 'You have been logged in');
         }
 
-        return redirect('/login')->with('status', 'Login or password is wrong');
+        return redirect('/auth/login')->with('status', 'Login or password is wrong');
     }
 
 
