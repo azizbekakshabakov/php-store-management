@@ -88,7 +88,7 @@
                         <td class="align-middle">{{$employee->name}} {{$employee->surname}}</td>
                         <td class="align-middle">{{$employee->salary}} ₸</td>
                         <td class="align-middle">{{$employee->experience}} years</td>
-                        <td><img src="/storage/{{$employee->image}}" alt="image" style="height: 200px;"></td>
+                        <td class="text-center"><img src="/storage/{{$employee->image}}" alt="image" style="height: 200px;"></td>
                         <td class="align-middle">
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group me-1">
