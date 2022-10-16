@@ -77,7 +77,7 @@
                         <th>Name</th>
                         <th>Salary</th>
                         <th>Experience</th>
-                        <th>Photo</th>
+                        <th class="text-center">Photo</th>
                         <th></th>
                     </tr>
                 </thead>

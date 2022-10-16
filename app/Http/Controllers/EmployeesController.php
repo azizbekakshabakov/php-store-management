@@ -44,6 +44,8 @@ class EmployeesController extends Controller
             $employee->surname = $request->get('surname');
             $employee->salary = $request->get('salary');
             $employee->experience = $request->get('experience');
+            $url = $request->file('image')->store('images');
+            $employee->image = $url;
 
             $employee->save();
 

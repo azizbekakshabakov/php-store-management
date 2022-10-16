@@ -30,7 +30,7 @@
     </div>
     @endif
 
-	<form action="/table/employees/edit/{{$employee->id}}" method="post">
+	<form action="/table/employees/edit/{{$employee->id}}" method="post" enctype="multipart/form-data">
 		<!-- <input type="hidden" name="table" value="SomeValue"> -->
 		@csrf
 		<div class="form-group modal-body">
@@ -49,14 +49,11 @@
 			<label>Experience : </label>
 			<input type="number" name="experience" class="form-control" value="{{$employee->experience}}">
 		</div>
-		<!-- <div class="form-group modal-body mb-3">
-			<label>Some ordinary labels : </label>
-			<select class="form-select" name="ValueName">
-					<option value="ID" selected>
-						Value
-					</option>
-			</select>
-		</div> -->
+		<div class="form-group modal-body">
+			<label>Photo : </label>
+			<input type="file" name="image" class="form-control" value="{{$employee->experience}}">
+		</div>
+
 		<div class="row"><div class="col text-center">
 			<button type="submit" class="btn btn-success">Submit</button>
 		</div></div>
