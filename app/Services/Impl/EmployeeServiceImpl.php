@@ -19,6 +19,15 @@ class EmployeeServiceImpl implements EmployeeService {
         return $employees;
     }
 
+    public function getOne($id) {
+        $employee = Employee::find($id);
+
+        if ($employee === null) 
+            return response('Failed: entity not found', 404);
+
+        return $employee;
+    }
+
     public function addEmployee(Request $request) {
         if ($request->has(['name', 'surname', 'salary', 'experience']) && $request->hasFile('image')) {
             $employee = new Employee();

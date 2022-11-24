@@ -7,6 +7,7 @@ use App\Models\Category;
 
 interface SupplierService {
     public function getAll();
+    public function getOne($id);
     public function add(Request $request);
     public function edit(Request $request);
     public function remove($id);

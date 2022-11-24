@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\EmployeeService;
+use App\Http\Resources\EmployeeResource;
 
 class EmployeesController extends Controller
 {
@@ -20,7 +21,7 @@ class EmployeesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'employees' => $employees
+                'employees' => EmployeeResource::collection($employees)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class EmployeesController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new EmployeeResource($this->employeeService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {

@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\SupplierService;
+use App\Http\Resources\SupplierResource;
 
-class SupplierController extends Controller
+class SuppliersController extends Controller
 {
     protected $itemService;
 
@@ -20,7 +21,7 @@ class SupplierController extends Controller
 
             return response()->json([
                 'status' => true,
-                'suppliers' => $items
+                'suppliers' => SupplierResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class SupplierController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new SupplierResource($this->itemService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {

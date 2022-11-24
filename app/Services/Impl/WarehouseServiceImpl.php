@@ -19,6 +19,15 @@ class WarehouseServiceImpl implements WarehouseService {
         return $items;
     }
 
+    public function getOne($id) {
+        $item = Warehouse::find($id);
+
+        if ($item === null) 
+            return response('Failed: entity not found', 404);
+
+        return $item;
+    }
+
     public function add(Request $request) {
         if ($request->has(['index', 'address', 'area'])) {
             $warehouse = new Warehouse();

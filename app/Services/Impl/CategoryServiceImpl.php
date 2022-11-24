@@ -19,6 +19,15 @@ class CategoryServiceImpl implements CategoryService {
         return $items;
     }
 
+    public function getOne($id) {
+        $item = Category::find($id);
+
+        if ($item === null) 
+            return response('Failed: entity not found', 404);
+
+        return $item;
+    }
+
     public function addCategory(Request $request) {
         if ($request->has(['name', 'employee_id'])) {
             $category = new Category();

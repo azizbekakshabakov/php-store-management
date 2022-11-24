@@ -19,6 +19,15 @@ class SupplierServiceImpl implements SupplierService {
         return $items;
     }
 
+    public function getOne($id) {
+        $item = Supplier::find($id);
+
+        if ($item === null) 
+            return response('Failed: entity not found', 404);
+
+        return $item;
+    }
+
     public function add(Request $request) {
         if ($request->has(['name', 'address', 'supply_date'])) {
             $supplier = new Supplier();

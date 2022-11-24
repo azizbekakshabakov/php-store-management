@@ -19,6 +19,15 @@ class GoodServiceImpl implements GoodService {
         return $items;
     }
 
+    public function getOne($id) {
+        $item = Good::find($id);
+
+        if ($item === null) 
+            return response('Failed: entity not found', 404);
+
+        return $item;
+    }
+
     public function add(Request $request) {
         if ($request->has(['name', 'quantity', 'category_id', 'supplier_id', 'warehouse_id'])) {
             $good = new Good();

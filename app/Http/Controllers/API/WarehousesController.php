@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\WarehouseService;
+use App\Http\Resources\WarehouseResource;
 
 class WarehousesController extends Controller
 {
@@ -20,7 +21,7 @@ class WarehousesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'warehouses' => $items
+                'warehouses' => WarehouseResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class WarehousesController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new WarehouseResource($this->itemService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {
