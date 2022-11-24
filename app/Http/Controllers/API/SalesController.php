@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\SaleService;
+use App\Http\Resources\SaleResource;
 
-class SaleController extends Controller
+class SalesController extends Controller
 {
     protected $itemService;
 
@@ -20,7 +21,7 @@ class SaleController extends Controller
 
             return response()->json([
                 'status' => true,
-                'sales' => $items
+                'sales' => SaleResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class SaleController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new SaleResource($this->itemService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {

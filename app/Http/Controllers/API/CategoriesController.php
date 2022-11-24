@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\CategoryService;
+use App\Http\Resources\CategoryResource;
 
 class CategoriesController extends Controller
 {
@@ -20,7 +21,7 @@ class CategoriesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'categories' => $items
+                'categories' => CategoryResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class CategoriesController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new CategoryResource($this->itemService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {

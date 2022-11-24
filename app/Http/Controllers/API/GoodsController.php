@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\GoodService;
+use App\Http\Resources\GoodsResource;
 
 class GoodsController extends Controller
 {
@@ -20,7 +21,7 @@ class GoodsController extends Controller
 
             return response()->json([
                 'status' => true,
-                'goods' => $items
+                'goods' => GoodsResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -28,6 +29,12 @@ class GoodsController extends Controller
                 'message' => $e->getMessage()
             ], $e->getCode());
         }
+    }
+
+    public function getOne($id) {
+        $response = new GoodsResource($this->itemService->getOne($id));
+
+        return $response;
     }
 
     public function post(Request $request) {
