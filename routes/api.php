@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/employees', [\App\Http\Controllers\API\EmployeesController::class, 'index'])->middleware('auth:api');
 Route::get('/employees/{id}', [\App\Http\Controllers\API\EmployeesController::class, 'getOne'])->middleware('auth:api');
-Route::post('/employees', [\App\Http\Controllers\API\EmployeesController::class, 'post'])->middleware('auth:api');
+Route::post('/employees', [\App\Http\Controllers\API\EmployeesController::class, 'post'])->middleware(['auth:api', 'admin']);
 Route::put('/employees', [\App\Http\Controllers\API\EmployeesController::class, 'put'])->middleware('auth:api');
 Route::delete('/employees/{id}', [\App\Http\Controllers\API\EmployeesController::class, 'delete'])->middleware('auth:api');
 
@@ -54,5 +54,8 @@ Route::post('/warehouses', [\App\Http\Controllers\API\WarehousesController::clas
 Route::put('/warehouses', [\App\Http\Controllers\API\WarehousesController::class, 'put'])->middleware('auth:api');
 Route::delete('/warehouses/{id}', [\App\Http\Controllers\API\WarehousesController::class, 'delete'])->middleware('auth:api');
 
-Route::post('/register', [\App\Http\Controllers\API\AuthApiController::class, 'register']);
-Route::post('/login', [\App\Http\Controllers\API\AuthApiController::class, 'login']);
+Route::post('/register', [\App\Http\Controllers\API\AuthController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\API\AuthController::class, 'login']);
+
+// Route::post('/register', [\App\Http\Controllers\API\AuthApiController::class, 'register']);
+// Route::post('/login', [\App\Http\Controllers\API\AuthApiController::class, 'login']);
