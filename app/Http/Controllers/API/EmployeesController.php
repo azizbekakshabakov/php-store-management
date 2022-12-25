@@ -21,7 +21,7 @@ class EmployeesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'employees' => EmployeeResource::collection($employees)
+                'items' => EmployeeResource::collection($employees)
             ]);
         } catch (\Exception $e) {
             return response()->json([

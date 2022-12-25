@@ -21,7 +21,7 @@ class WarehousesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'warehouses' => WarehouseResource::collection($items)
+                'items' => WarehouseResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([

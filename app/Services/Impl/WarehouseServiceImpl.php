@@ -45,7 +45,6 @@ class WarehouseServiceImpl implements WarehouseService {
     public function edit(Request $request) {
         if ($request->has(['index', 'address', 'area'])) {
             $warehouse = Warehouse::find($request->get('id'));
-            $warehouse = new Warehouse();
             $warehouse->index = $request->get('index');
             $warehouse->address = $request->get('address');
             $warehouse->area = $request->get('area');

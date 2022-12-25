@@ -21,7 +21,7 @@ class GoodsController extends Controller
 
             return response()->json([
                 'status' => true,
-                'goods' => GoodsResource::collection($items)
+                'items' => GoodsResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([

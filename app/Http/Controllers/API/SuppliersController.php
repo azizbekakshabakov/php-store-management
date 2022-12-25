@@ -21,7 +21,7 @@ class SuppliersController extends Controller
 
             return response()->json([
                 'status' => true,
-                'suppliers' => SupplierResource::collection($items)
+                'items' => SupplierResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([

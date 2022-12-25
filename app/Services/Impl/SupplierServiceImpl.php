@@ -45,7 +45,6 @@ class SupplierServiceImpl implements SupplierService {
     public function edit(Request $request) {
         if ($request->has(['name', 'address', 'supply_date'])) {
             $supplier = Supplier::find($request->get('id'));
-            $supplier = new Supplier();
             $supplier->name = $request->get('name');
             $supplier->address = $request->get('address');
             $supplier->supply_date = $request->get('supply_date');

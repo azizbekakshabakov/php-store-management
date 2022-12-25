@@ -21,7 +21,7 @@ class SalesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'sales' => SaleResource::collection($items)
+                'items' => SaleResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([

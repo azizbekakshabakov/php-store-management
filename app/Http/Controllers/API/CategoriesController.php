@@ -21,7 +21,7 @@ class CategoriesController extends Controller
 
             return response()->json([
                 'status' => true,
-                'categories' => CategoryResource::collection($items)
+                'items' => CategoryResource::collection($items)
             ]);
         } catch (\Exception $e) {
             return response()->json([

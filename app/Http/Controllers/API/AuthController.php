@@ -14,10 +14,7 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Email already exists'
-            ]);
+            return response('Email already exists', 401);
         }
 
         User::create([
@@ -38,22 +35,17 @@ class AuthController extends Controller
         $user = User::where('email', $credentials['email'])->first();
 
         if (! $user) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This email is not registered'
-            ]);
+            return response('Email or password is invalid', 401);
         }
 
         if (Auth::attempt($credentials)) {
             return response()->json([
                 'success' => true,
+                'name' => $user->name,
                 'token' => $user->createToken($user->email)->accessToken
             ]);
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'Email or password is invalid'
-        ]);
+        return response('Email or password is invalid', 401);
     }
 }
